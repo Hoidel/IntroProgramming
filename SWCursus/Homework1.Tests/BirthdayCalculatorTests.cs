@@ -4,81 +4,166 @@ namespace Homework1.Tests
 {
     public class BirthdayCalculatorTests
     {
-        private BirthdayCalculator calculator = new BirthdayCalculator();
-        int yearToday = 2023;
-        int monthToday = 4;
-        int dayToday = 13;
-
+        private DayCalculator calculator = new DayCalculator();
+        
         [Fact]
-        public void GetAgeInYears_YearLowerMonthLowerDayLower_CorrectOutput()
+        public void DayOfWeekFirstJanuaryCurrentYear_2023_CorrectOutput()
         {
-            int yearOfBirth = 1960;
-            int monthOfBirth = 3;
-            int dayOfBirth = 3;
+            int output = calculator.DayOfWeekFirstJanuaryCurrentYear();
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
-
-            Assert.Equal(63, output);
+            Assert.Equal(0, output); // january 1st 2023 was a sunday;
         }
 
         [Fact]
-        public void GetAgeInYears_YearLowerMonthLowerDayEqual_CorrectOutput()
+        public void GetNewDayOfTheWeek_5plus11_CorrectOutput()
         {
-            int yearOfBirth = 1972;
-            int monthOfBirth = 3;
-            int dayOfBirth = 13;
+            int output = calculator.GetNewDayOfTheWeek(5, 11);
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
-
-            Assert.Equal(51, output);
+            Assert.Equal(2, output); // friday + 11 = tuesday
         }
 
         [Fact]
-        public void GetAgeInYears_YearLowerMonthLowerDayHigher_CorrectOutput()
+        public void GetNewDayOfTheWeek_2plus3_CorrectOutput()
         {
-            int yearOfBirth = 1972;
-            int monthOfBirth = 3;
-            int dayOfBirth = 19;
+            int output = calculator.GetNewDayOfTheWeek(2, 3);
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
-
-            Assert.Equal(51, output);
+            Assert.Equal(5, output); // tuesday + 3 = friday
         }
 
         [Fact]
-        public void GetAgeInYears_YearInPastMonthInPastDayInPast_CorrectOutput()
+        public void GetNewDayOfTheWeek_0plus7_CorrectOutput()
         {
-            int yearOfBirth = 1960;
-            int monthOfBirth = 3;
-            int dayOfBirth = 3;
+            int output = calculator.GetNewDayOfTheWeek(0, 7);
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
-
-            Assert.Equal(63, output);
+            Assert.Equal(0, output); // sunday + 7 = sunday
         }
 
         [Fact]
-        public void GetAgeInYears_YearInPastMonthInPastDayToday_CorrectOutput()
+        public void GetNewDayOfTheWeek_5minus11_CorrectOutput()
         {
-            int yearOfBirth = 1972;
-            int monthOfBirth = 3;
-            int dayOfBirth = 13;
+            int output = calculator.GetNewDayOfTheWeek(5, -11);
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
-
-            Assert.Equal(51, output);
+            Assert.Equal(1, output); // friday - 11 = monday
         }
 
         [Fact]
-        public void GetAgeInYears_YearInPastMonthInPastDayinFuture_CorrectOutput()
+        public void GetNewDayOfTheWeek_6minus3_CorrectOutput()
         {
-            int yearOfBirth = 1972;
-            int monthOfBirth = 3;
-            int dayOfBirth = 19;
+            int output = calculator.GetNewDayOfTheWeek(6, -3);
 
-            int output = calculator.GetAgeInYears(yearToday, monthToday, dayToday, yearOfBirth, monthOfBirth, dayOfBirth);
+            Assert.Equal(3, output); // saturday - 3 = wednesday
+        }
 
-            Assert.Equal(51, output);
+        [Fact]
+        public void GetNewDayOfTheWeek_0minus7_CorrectOutput()
+        {
+            int output = calculator.GetNewDayOfTheWeek(0, -7);
+
+            Assert.Equal(0, output); // sunday - 7 = sunday
+        }
+
+        [Fact]
+        public void IsLeapYear_1987_CorrectOutput()
+        {
+            bool output = calculator.IsLeapYear(1987);
+
+            Assert.False(output);
+        }
+
+        [Fact]
+        public void IsLeapYear_204_CorrectOutput()
+        {
+            bool output = calculator.IsLeapYear(204);
+
+            Assert.True(output);
+        }
+
+        [Fact]
+        public void IsLeapYear_1900_CorrectOutput()
+        {
+            bool output = calculator.IsLeapYear(1900);
+
+            Assert.False(output);
+        }
+
+        [Fact]
+        public void IsLeapYear_4000_CorrectOutput()
+        {
+            bool output = calculator.IsLeapYear(4000);
+
+            Assert.True(output);
+        }
+
+        [Fact]
+        public void GetNumberOfDaysInYear_4000_CorrectOutput()
+        {
+            int output = calculator.GetNumberOfDaysInYear(4000);
+
+            Assert.Equal(366, output);
+        }
+
+        [Fact]
+        public void GetNumberOfDaysInYear_2023_CorrectOutput()
+        {
+            int output = calculator.GetNumberOfDaysInYear(2023);
+
+            Assert.Equal(365, output);
+        }
+
+        [Fact]
+        public void GetNumberOfDaysInMonth_February1996_CorrectOutput()
+        {
+            int output = calculator.GetNumberOfDaysInMonth(2, 1996);
+
+            Assert.Equal(29, output);
+        }
+
+        [Fact]
+        public void GetNumberOfDaysInMonth_February1997_CorrectOutput()
+        {
+            int output = calculator.GetNumberOfDaysInMonth(2, 1997);
+
+            Assert.Equal(28, output);
+        }
+
+        [Fact]
+        public void GetNumberOfDaysInMonth_March2023_CorrectOutput()
+        {
+            int output = calculator.GetNumberOfDaysInMonth(3, 2023);
+
+            Assert.Equal(31, output);
+        }
+
+        [Fact]
+        public void GetAdjustedDelta_23_2()
+        {
+            int output = calculator.GetAdjustedDelta(23);
+
+            Assert.Equal(2, output);
+        }
+
+        [Fact]
+        public void GetAdjustedDelta_4_4()
+        {
+            int output = calculator.GetAdjustedDelta(4);
+
+            Assert.Equal(4, output);
+        }
+
+        [Fact]
+        public void GetAdjustedDelta_m1_m1()
+        {
+            int output = calculator.GetAdjustedDelta(-1);
+
+            Assert.Equal(-1, output);
+        }
+
+        [Fact]
+        public void GetAdjustedDelta_m23_m2()
+        {
+            int output = calculator.GetAdjustedDelta(-23);
+
+            Assert.Equal(-2, output);
         }
     }
 }

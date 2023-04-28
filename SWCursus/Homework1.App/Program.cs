@@ -4,11 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Goedendag. In welk jaar bent u geboren? Geef aub het antwoord in cijfers.");
-
-            Console.WriteLine("In welke maand bent u geboren? Geef aub het antwoord in cijfers.");
-
-            Console.WriteLine("Op welke dag bent u geboren? Geef aub het antwoord in cijfers.");
+            DayCalculator calculator = new DayCalculator();
+            int dayNumber = calculator.DayOfWeekFirstJanuaryCurrentYear();
+            Console.WriteLine($"Als 28 april 2023 op een vrijdag valt, viel 1 januari 2023 op een {calculator.GetDay(dayNumber)}");
         }
     }
 }

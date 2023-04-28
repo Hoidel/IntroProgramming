@@ -4,17 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("1) StringManipulator");
-
-            ConsoleKeyInfo i = Console.ReadKey();
-            switch (i.KeyChar)
-            {
-                case '1':
-                    StringManipulator();
-                    break;
-                default:
-                    return;
-            }
+            Console.WriteLine(-2 % 7);
+            Console.WriteLine(-7 % 7);
+            Console.WriteLine(-8 % 7);
         }
 
         static void StringManipulator()
