@@ -21,7 +21,22 @@
             //    but these centurial years are leap years if they are exactly divisible by 400.
             //    For example, the years 1700, 1800, and 1900 are not leap years, but the years 1600 and 2000 are.[7]
             //    https://en.wikipedia.org/wiki/Leap_year
-            return false;
+            bool isLeapYear = false;
+           if ((year % 400) == 0)
+            {
+                isLeapYear = true;
+            }
+
+            else if ((year % 100) == 0)
+            {
+                isLeapYear = false;
+            }
+            else if ((year % 4) == 0)
+                    {
+                        isLeapYear = true;
+                    }
+
+            return isLeapYear;
         }
 
         /// <summary>
@@ -31,7 +46,16 @@
         /// <returns></returns>
         public int GetNumberOfDaysInYear(int year)
         {
-            return 9000;
+            int NumberOfDays = 0;
+            if (IsLeapYear(year) == true) { 
+            NumberOfDays= 366;
+            }
+            else if (IsLeapYear(year) == false)
+            {
+                NumberOfDays= 365;
+            }
+           
+            return NumberOfDays;
         }
 
         /// <summary>
@@ -41,7 +65,32 @@
         /// <returns></returns>
         public int GetNumberOfDaysInMonth(int month, int year)
         {
-            return 9000;
+            int NumberOfDaysInMonth = 0;
+            if (month == 1||
+                month == 3 ||
+                month == 5 ||
+                month == 7 ||
+                month == 8 ||
+                month == 10 ||
+                month == 12 ) 
+            {
+                NumberOfDaysInMonth = 31;
+            }
+            else if (month == 2 && 
+                IsLeapYear(year) == true
+                )
+            { 
+                NumberOfDaysInMonth = 29;
+            }
+            else if (month == 2)
+            {
+                NumberOfDaysInMonth = 28;
+            }
+            else
+            {
+                NumberOfDaysInMonth = 30;
+            }
+            return NumberOfDaysInMonth;
         }
 
         /// <summary>
@@ -52,7 +101,17 @@
         /// <returns></returns>
         public int GetAdjustedDelta(int delta)
         {
-            return 9000;
+            if (delta <= 7 &&
+                delta >= -7)
+            {
+                delta = delta + 0;
+            }
+            else if (delta < 0)
+            {
+                delta = delta % -7;
+            }
+            else delta = delta % 7;
+            return delta;
         }
 
         /// <summary>
@@ -62,8 +121,27 @@
         /// <returns></returns>
         public int GetNewDayOfTheWeek(int dayNumber, int delta)
         {
-            return 9000;
+            int NewDayOfTheWeekNumber = dayNumber + GetAdjustedDelta(delta);
+            if (NewDayOfTheWeekNumber <= 6 &&
+               NewDayOfTheWeekNumber >= 0)
+            {
+                NewDayOfTheWeekNumber = NewDayOfTheWeekNumber+0;
+            }
+            else if (NewDayOfTheWeekNumber < 0 &&
+                NewDayOfTheWeekNumber >= -6)
+            {
+                NewDayOfTheWeekNumber = 6 - NewDayOfTheWeekNumber;
+            }
+
+            else if (NewDayOfTheWeekNumber < 0)
+            {
+                NewDayOfTheWeekNumber = NewDayOfTheWeekNumber % -7;
+            }
+            else NewDayOfTheWeekNumber = NewDayOfTheWeekNumber % 7;
+            return NewDayOfTheWeekNumber;
         }
+
+
 
         /// <summary>
         /// Returns the day of the week on january 1st 2023.
@@ -76,7 +154,28 @@
 
         public string GetDay(int dayNumber)
         {
-            return "";
+            string dayName = "";
+            switch (dayNumber)
+            {
+                case 0: dayName = "zondag";
+                    break;
+                case 1: dayName = "maandag";
+                    break;
+                case 2: dayName = "dinsdag";
+                    break;
+                case 3: dayName = "woensdag";
+                    break;
+                case 4: dayName = "donderdag";
+                    break;
+                case 5: dayName = "vrijdag";
+                    break;
+                case 6: dayName = "zaterdag";
+                    break;
+                default: dayName = "ongeldige waarde";
+                    break;
+            }
+                    
+            return dayName;
         }
     }
 }
