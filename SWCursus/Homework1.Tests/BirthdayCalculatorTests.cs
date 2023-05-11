@@ -165,5 +165,20 @@ namespace Homework1.Tests
 
             Assert.Equal(-2, output);
         }
+
+        [Fact]
+        public void Getday_test()
+        {
+            try
+            {
+                string output = calculator.GetDay(8);
+                Assert.False(true);
+            }
+            catch
+            {
+                Assert.True(true);
+
+            }
+        }
     }
 }

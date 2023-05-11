@@ -72,7 +72,12 @@
                 return 28;
             }
 
-            else if (month % 2 == 1)
+            else if (month % 2 == 1 && month <= 7)
+            {
+                return 31;
+            }
+
+            else if (month % 2 == 0 && month >= 8)
             {
                 return 31;
             }
@@ -132,42 +137,28 @@
 
         public String GetDay(int dayNumber)
         {
-            if (dayNumber == 0)
-            {
-                return "zondag";
-            }
 
-            else if (dayNumber == 1)
+            switch (dayNumber)
             {
-                return "maandag";
-            }
+                case 0:
+                    return "zondag";
+                case 1:
+                    return "maandag";
+                case 2:
+                    return "dinsdag";
+                case 3:
+                    return "woensdag";
+                case 4:
+                    return "donderdag";
+                case 5:
+                    return "vrijdag";
+                case 6:
+                    return "zaterdag";
+                default:
+                    throw new Exception($"Geen geldig dagnummer gegeven. Ongeldig nummer is: {dayNumber}");// Ik wil hier eigenlijk een foutmelding geven als er een invalide dag wordt ingevuld maar ik weet niet hoe :)))
 
-            else if (dayNumber == 2)
-            {
-                return "dinsdag";
-            }
+            }    
 
-            else if (dayNumber == 3)
-            {
-                return "woensdag";
-            }
-
-            else if (dayNumber == 4)
-            {
-                return "donderdag";
-            }
-
-            else if (dayNumber == 5)
-            {
-                return "vrijdag";
-            }
-
-            else if (dayNumber == 6)
-            {
-                return "zaterdag";
-            }
-
-            return ""; // Ik wil hier eigenlijk een foutmelding geven als er een invalide dag wordt ingevuld maar ik weet niet hoe :)))
         }
     }
 }
