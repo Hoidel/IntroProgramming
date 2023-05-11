@@ -20,6 +20,24 @@
             //    but these centurial years are leap years if they are exactly divisible by 400.
             //    For example, the years 1700, 1800, and 1900 are not leap years, but the years 1600 and 2000 are.[7]
             //    https://en.wikipedia.org/wiki/Leap_year
+
+            if (year % 400 == 0 )
+            {
+                return true;
+
+            }
+            
+            else if(year % 100 == 0)
+            {
+                return false;
+            }
+
+            else if(year % 4 == 0)
+            {
+                return true; 
+            }
+
+
             return false;
         }
 
@@ -30,7 +48,11 @@
         /// <returns></returns>
         public int GetNumberOfDaysInYear(int year)
         {
-            return 9000;
+            if (IsLeapYear(year) == true)
+            {
+                return 366;
+            }
+            return 365;
         }
 
         /// <summary>
@@ -40,7 +62,22 @@
         /// <returns></returns>
         public int GetNumberOfDaysInMonth(int month, int year)
         {
-            return 9000;
+            if (month == 2 && IsLeapYear(year) == true)
+            {
+                return 29;
+            }
+
+            else if (month == 2 && IsLeapYear(year) == false)
+            {
+                return 28;
+            }
+
+            else if (month % 2 == 1)
+            {
+                return 31;
+            }
+
+            return 30;
         }
 
         /// <summary>
@@ -51,7 +88,9 @@
         /// <returns></returns>
         public int GetAdjustedDelta(int delta)
         {
-            return 9000;
+
+                return delta % 7;
+
         }
 
         /// <summary>
@@ -61,7 +100,14 @@
         /// <returns></returns>
         public int GetNewDayOfTheWeek(int dayNumber, int delta)
         {
-            return 9000;
+            int newDelta = GetAdjustedDelta(delta);
+
+            if (dayNumber + newDelta >= 0)
+            {
+               return (dayNumber + newDelta) % 7;
+            }
+
+            return (dayNumber + newDelta) + 7;
         }
 
         /// <summary>
@@ -70,12 +116,58 @@
         /// <returns></returns>
         public int DayOfWeekFirstJanuaryCurrentYear()
         {
-            return 9000;
+ 
+            int totaldays = -1; // Je moet 1 dag minder tellen omdat de huidge dag niet meeteld. Think
+
+            for (int i=1; currentMonth-1 >= i ; i++)
+            {
+                totaldays = totaldays + GetNumberOfDaysInMonth(i, currentYear);
+            }
+
+            totaldays += currentDay;
+            int newDay = GetNewDayOfTheWeek(currentDayNumber, (totaldays * -1));
+
+            return newDay;
         }
 
-        public string GetDay(int dayNumber)
+        public String GetDay(int dayNumber)
         {
-            return "";
+            if (dayNumber == 0)
+            {
+                return "zondag";
+            }
+
+            else if (dayNumber == 1)
+            {
+                return "maandag";
+            }
+
+            else if (dayNumber == 2)
+            {
+                return "dinsdag";
+            }
+
+            else if (dayNumber == 3)
+            {
+                return "woensdag";
+            }
+
+            else if (dayNumber == 4)
+            {
+                return "donderdag";
+            }
+
+            else if (dayNumber == 5)
+            {
+                return "vrijdag";
+            }
+
+            else if (dayNumber == 6)
+            {
+                return "zaterdag";
+            }
+
+            return ""; // Ik wil hier eigenlijk een foutmelding geven als er een invalide dag wordt ingevuld maar ik weet niet hoe :)))
         }
     }
 }
