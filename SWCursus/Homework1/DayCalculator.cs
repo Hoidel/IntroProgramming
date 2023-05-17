@@ -1,4 +1,6 @@
-﻿namespace Homework1
+﻿using System;
+
+namespace Homework1
 {
     public class DayCalculator
     {
@@ -20,7 +22,14 @@
             //    but these centurial years are leap years if they are exactly divisible by 400.
             //    For example, the years 1700, 1800, and 1900 are not leap years, but the years 1600 and 2000 are.[7]
             //    https://en.wikipedia.org/wiki/Leap_year
-            return false;
+            if (year % 400 == 0)
+            { return true; }
+            else if (year % 100 == 0)
+            { return false; }
+            else if (year % 4 == 0)
+            { return true; }
+            else
+            { return false; }
         }
 
         /// <summary>
@@ -30,7 +39,16 @@
         /// <returns></returns>
         public int GetNumberOfDaysInYear(int year)
         {
-            return 9000;
+            int NumberOfDaysInYear;
+            if (IsLeapYear(year) == true)
+                {
+                NumberOfDaysInYear = 366;
+                }
+            else
+                {
+                NumberOfDaysInYear = 365;
+                }
+            return NumberOfDaysInYear;
         }
 
         /// <summary>
@@ -40,7 +58,57 @@
         /// <returns></returns>
         public int GetNumberOfDaysInMonth(int month, int year)
         {
-            return 9000;
+            int NrOfDaysInMonth;
+            switch (month)
+                { 
+                case 1:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 2:
+                    if (IsLeapYear(year) == true)
+                    {
+                        NrOfDaysInMonth = 29;
+                        break;
+                    }
+                    else
+                    {
+                        NrOfDaysInMonth = 28;
+                        break;
+                    }
+                case 3:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 4:
+                    NrOfDaysInMonth = 30; 
+                    break;
+                case 5:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 6:
+                    NrOfDaysInMonth = 30; 
+                    break;
+                case 7:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 8:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 9:
+                    NrOfDaysInMonth = 30; 
+                    break;
+                case 10:
+                    NrOfDaysInMonth = 31; 
+                    break;
+                case 11:
+                    NrOfDaysInMonth = 30; 
+                    break;
+                case 12:
+                    NrOfDaysInMonth = 31;
+                    break;
+                default: NrOfDaysInMonth = 99;
+                    break;
+            }
+            return NrOfDaysInMonth;
         }
 
         /// <summary>
@@ -51,7 +119,17 @@
         /// <returns></returns>
         public int GetAdjustedDelta(int delta)
         {
-            return 9000;
+            int AdjustedDelta;
+            if (delta >= 0)
+                {
+                AdjustedDelta = delta % 7;
+                }
+            else
+                {
+                AdjustedDelta = delta % -7;
+                }
+            
+            return AdjustedDelta;
         }
 
         /// <summary>
@@ -61,7 +139,8 @@
         /// <returns></returns>
         public int GetNewDayOfTheWeek(int dayNumber, int delta)
         {
-            return 9000;
+            int NewDayOfTheWeek = (dayNumber + GetAdjustedDelta(delta)) % 7;
+            return NewDayOfTheWeek;
         }
 
         /// <summary>
@@ -70,12 +149,86 @@
         /// <returns></returns>
         public int DayOfWeekFirstJanuaryCurrentYear()
         {
-            return 9000;
+            int FirstJanuaryYear = 2023;
+            int FirstJanuaryMonth = 1;
+            int FirstJanuaryDay = 1;
+            int DeltaDays = 0;
+
+            if (currentYear > FirstJanuaryYear)
+            {
+                for (int GoalYear = FirstJanuaryYear; currentYear > GoalYear; currentYear--)
+                {
+                    DeltaDays = DeltaDays - GetNumberOfDaysInYear(currentYear);
+                }
+            }
+            else if (currentYear < FirstJanuaryYear)
+            {
+                for (int GoalYear = FirstJanuaryYear; currentYear < GoalYear; currentYear++)
+                {
+                    DeltaDays = DeltaDays + GetNumberOfDaysInYear(currentYear);
+                }
+            }
+            else if (currentMonth > FirstJanuaryMonth)
+            {
+                for (int GoalMonth = FirstJanuaryMonth; currentMonth > GoalMonth; currentMonth--)
+                {
+                    DeltaDays = DeltaDays - GetNumberOfDaysInMonth(currentMonth,currentYear);
+                }
+            }
+            else if (currentMonth < FirstJanuaryMonth)
+            {
+                for (int GoalMonth = FirstJanuaryMonth; currentMonth < GoalMonth; currentMonth++)
+                {
+                    DeltaDays = DeltaDays + GetNumberOfDaysInMonth(currentMonth, currentYear);
+                }
+            }
+            else if (currentDay > FirstJanuaryDay)
+            {
+                for (int GoalDay = FirstJanuaryDay; currentDay > GoalDay; currentDay--)
+                {
+                    DeltaDays = DeltaDays--;
+                }
+            }
+            else if (currentDay < FirstJanuaryDay)
+            {
+                for (int GoalDay = FirstJanuaryDay; currentDay < GoalDay; currentDay++)
+                {
+                    DeltaDays = DeltaDays++;
+                }
+            }
+            return GetNewDayOfTheWeek(currentDayNumber,DeltaDays) ;
         }
 
         public string GetDay(int dayNumber)
         {
-            return "";
+            string DayName;
+            switch (dayNumber)
+            {
+                case 0:
+                    DayName = "zondag";
+                    break;
+                case 1:
+                    DayName = "maandag";
+                    break;
+                case 2:
+                    DayName = "dinsdag";
+                    break;
+                case 3:
+                    DayName = "woensdag";
+                    break;
+                case 4:
+                    DayName = "donderdag";
+                    break;
+                case 5:
+                    DayName = "vrijdag";
+                    break;
+                case 6:
+                    DayName = "zaterdag";
+                    break;
+                default: DayName = "onbekend";
+                    break;
+            }
+            return DayName;
         }
     }
 }
