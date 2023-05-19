@@ -20,7 +20,24 @@
             //    but these centurial years are leap years if they are exactly divisible by 400.
             //    For example, the years 1700, 1800, and 1900 are not leap years, but the years 1600 and 2000 are.[7]
             //    https://en.wikipedia.org/wiki/Leap_year
-            return false;
+
+            if (year % 400 == 0)
+            {
+                return true;
+            }
+
+            else if (year % 100 == 0)
+            {
+                return false;
+            }
+
+            else if (year % 4 == 0)
+            {
+                return true;
+            }
+
+            else
+                return false;
         }
 
         /// <summary>
@@ -30,7 +47,12 @@
         /// <returns></returns>
         public int GetNumberOfDaysInYear(int year)
         {
-            return 9000;
+            if (IsLeapYear(year) == True)
+            {
+                return 366;
+            }
+
+            else return 365;
         }
 
         /// <summary>
@@ -40,7 +62,22 @@
         /// <returns></returns>
         public int GetNumberOfDaysInMonth(int month, int year)
         {
-            return 9000;
+            if (month == 2 && IsLeapYear(year) == true)
+            {
+                return 29;
+            }
+
+            else if (month == 2)
+            {
+                return 28;
+            }
+
+            else if (month == 4 || month == 6 | month 9 || month == 11)
+            {
+                return 30;
+            }
+
+            else return 30;
         }
 
         /// <summary>
@@ -51,7 +88,15 @@
         /// <returns></returns>
         public int GetAdjustedDelta(int delta)
         {
-            return 9000;
+            if delta >= 0
+                {
+                return delta % 7
+            }
+
+            else
+            {
+                return -(-(delta) % 7);
+            }
         }
 
         /// <summary>
@@ -61,7 +106,9 @@
         /// <returns></returns>
         public int GetNewDayOfTheWeek(int dayNumber, int delta)
         {
-            return 9000;
+            int newday = GetAdjustedDelta(delta);
+
+            return dayNumber + newday;
         }
 
         /// <summary>
@@ -75,7 +122,34 @@
 
         public string GetDay(int dayNumber)
         {
-            return "";
+            if (dayNumber == 0)
+            {
+                return "Zondag";
+            }
+            else if (dayNumber == 1)
+            {
+                return "Maandag";
+            }
+            else if (dayNumber == 2)
+            {
+                return "Dinsdag";
+            }
+            else if (dayNumber == 3)
+            {
+                return "Woensdag";
+            }
+            else if (dayNumber == 4)
+            {
+                return "Donderdag";
+            }
+            else if (dayNumber == 5)
+            {
+                return "Vrijdag";
+            }
+            else if (dayNumber == 6)
+            {
+                return "Zaterdag";
+            }
         }
     }
 }
