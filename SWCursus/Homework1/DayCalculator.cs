@@ -62,59 +62,22 @@
         /// <returns></returns>
         public int GetNumberOfDaysInMonth(int month, int year)
         {
-            if (GetNumberOfDaysInYear(year) == 366 && month == 2)
+            if (IsLeapYear(year) == true && month == 2)
             {
                 return 29;
             }
-            else if (GetNumberOfDaysInYear(year) == 365 && month == 2)
+            else if (IsLeapYear(year) == false && month == 2)
             {
                 return 28;
             }
-            else if (month == 1)
+            else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
             {
                 return 31;
-            }
-            else if (month == 3)
-            {
-                return 31;
-            }
-            else if (month == 4)
-            {
-                return 30;
-            }
-            else if (month == 5)
-            {
-                return 31;
-            }
-            else if (month == 6)
-            {
-                return 30;
-            }
-            else if (month == 7)
-            {
-                return 31;
-            }
-            else if (month == 8)
-            {
-                return 31;
-            }
-            else if (month == 9)
-            {
-                return 30;
-            }
-            else if (month == 10)
-            {
-                return 31;
-            }
-            else if (month == 11)
-            {
-                return 30;
             }
             else
             {
-                return 31;
+                return 30;
             }
-
         }
 
         /// <summary>
