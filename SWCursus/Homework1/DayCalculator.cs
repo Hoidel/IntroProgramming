@@ -152,7 +152,7 @@
             switch (dayNumber)
             {
                 case 0:
-                    return"zondag";
+                    return"zondagg";
                 case 1:
                     return"maandag";
                 case 2:
