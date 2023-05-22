@@ -1,4 +1,4 @@
-using Homework2.Exercise2;
+using Homework2.Exercise1;
 
 namespace Homework2.Tests.Exercise3
 {
@@ -12,7 +12,7 @@ namespace Homework2.Tests.Exercise3
 
             List<int> res = lst.GetValues().ToList();
 
-            Assert.True(res.Count == 0);
+            Assert.True(res.Count == 1);
             Assert.Contains(1, res);
         }
 
@@ -105,6 +105,24 @@ namespace Homework2.Tests.Exercise3
 
             Assert.DoesNotContain(2, res);
             Assert.Contains(6, res);
+        }
+
+        [Fact]
+        public void Remove_Multiple()
+        {
+            MyList lst = new MyList();
+            lst.Add(2);
+            lst.Add(6);
+            lst.Add(2);
+            lst.Add(4);
+
+            lst.Remove(2);
+
+            List<int> res = lst.GetValues().ToList();
+
+            Assert.DoesNotContain(2, res);
+            Assert.Equal(6, res[0]);
+            Assert.Equal(4, res[1]);
         }
 
         [Fact]

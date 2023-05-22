@@ -1,4 +1,4 @@
-﻿namespace Homework2.Exercise2
+﻿namespace Homework2.Exercise1
 {
     public class MyList
     {
@@ -69,6 +69,20 @@
         }
 
         /*
+         * Remove the value at an index in the list. 
+         * If there is no value at that index we expect an IndexOutOfRangeException.
+         * 
+         * Tips:
+         * What happens to all numbers after the given index?
+         * 
+         * If you're keeping track of indexes here you're allowed to use the Normal List implementation
+         */
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*
          * Remove all occurrances of a value in the list.
          * 
          * Tips:
@@ -76,20 +90,10 @@
          * Try to find a way to keep track of the indexes where a number should be removed and remove them later.
          * Don't forget about the size of the array.
          * Don't bother with resizing the array after removing elements, that's uneccecary. 
+         * 
+         * You might want to use the remove At method 
          */
         public void Remove(int val)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*
-         * Remove the value at an index in the list. 
-         * 
-         * Tips:
-         * What happens to all numbers after the given index?
-         * 
-         */
-        public void RemoveAt(int index)
         {
             throw new NotImplementedException();
         }

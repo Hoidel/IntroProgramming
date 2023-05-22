@@ -1,6 +1,6 @@
-﻿using Homework2.Exercise2;
+﻿using Homework2.Exercise1;
 
-namespace Homework2.Tests
+namespace Homework2.Tests.Exercise1
 {
     public class HotelTests
     {
