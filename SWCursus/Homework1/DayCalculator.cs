@@ -117,7 +117,28 @@
         /// <returns></returns>
         public int DayOfWeekFirstJanuaryCurrentYear()
         {
-            return 9000;
+            int currentDayNumber = 5; //Friday
+            int currentYear = 2023;
+            int currentMonth = 4;
+            int currentDay = 28;
+            int totalDelta = 0;
+
+            for (; currentDay > 0; currentDay--)
+            {
+                totalDelta++;
+            }
+            
+            for (; currentMonth > 0; currentMonth--)
+            {
+                totalDelta = totalDelta + GetNumberOfDaysInMonth(currentMonth, currentYear);
+            }
+
+            int newday = GetAdjustedDelta(totalDelta);
+            int dayoftheWeek = GetNewDayOfTheWeek(currentDayNumber, newday);
+
+            string Day = GetDay(dayoftheWeek);
+
+            return Day;
         }
 
         public string GetDay(int dayNumber)
