@@ -8,9 +8,16 @@ namespace Homework2.Exercise1
 {
     public class Guest : IGuest
     {
-        public Guest(string name, int daysLeftInStay)
-        { 
 
+        public string Name;
+        public int DaysLeftInStay;
+
+
+
+        public Guest(string name, int daysLeftInStay)
+        {
+            Name = name;
+            DaysLeftInStay = daysLeftInStay;
         }
 
     }
