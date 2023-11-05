@@ -27,7 +27,8 @@ namespace Homework2.Tests.Exercise1
             IHotelRoom room1 = new HotelRoom(2);
             room1.Guests.Add(new Guest("Mark", 3));
 
-            Assert.True(room1.Available());
+            //Assert.True(room1.Available());   //IRSI: aangepast; klopt toch niet?
+            Assert.False(room1.Available());
         }
 
         [Fact]

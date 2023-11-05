@@ -73,6 +73,7 @@ namespace Homework2.Tests.Exercise1
             IHotelRoom room2 = new HotelRoom(3);
 
             hotel.AddRoom(room1);
+            hotel.AddRoom(room2);   // IRSI: toegevoegd; klopt niet zonder toch?
 
             Assert.Contains(room1, hotel.Rooms);
             Assert.Contains(room2, hotel.Rooms);
